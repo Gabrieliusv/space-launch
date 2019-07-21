@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Launche from '../Launche'
+import Launch from '../Launch'
 
 class Home extends Component {
   constructor(props) {
@@ -7,9 +7,7 @@ class Home extends Component {
     this.state = {
       launchInfo: [],
       hasInfo: false,
-
     }
-
   }
 
   componentDidMount() {
@@ -20,13 +18,12 @@ class Home extends Component {
         hasInfo: true
       }))
       .catch(error => console.log('parsing error', error))
-
   };
 
   render() {
     return (
       <div>
-        <Launche launches={this.state} />
+        <Launch launches={this.state} />
       </div>
     )
   }

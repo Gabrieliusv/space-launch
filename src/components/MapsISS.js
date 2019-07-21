@@ -29,9 +29,11 @@ class MapsISS extends Component {
     }
 
     componentDidMount() {
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url = "http://api.open-notify.org/iss-now.json";
         this.timer = setInterval(
             () =>
-                fetch('http://api.open-notify.org/iss-now.json')
+                fetch(proxyurl + url)
                     .then(responce => responce.json())
                     .then(IssInfo => this.setState({
                         lat: IssInfo.iss_position.latitude,
@@ -66,7 +68,7 @@ class MapsISS extends Component {
 
     issPass(lat, lng) {
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = `http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lng}`
+        const url = `//api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lng}`
         fetch(proxyurl + url)
             .then(res => res.json())
             .then(passTimes => {
@@ -78,7 +80,6 @@ class MapsISS extends Component {
 
     issPassTimes = () => {
         let dates = [];
-
         this.state.issTimes.response.forEach(time => {
             let date = new Date(time.risetime * 1000);
             let string = date.toString();
@@ -87,9 +88,10 @@ class MapsISS extends Component {
         this.setState({ issInfo: dates })
     }
 
-
     inSpace = () => {
-        fetch('http://api.open-notify.org/astros.json')
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url = `//api.open-notify.org/astros.json`
+        fetch(proxyurl + url)
             .then(res => res.json())
             .then(inSpace => {
                 this.setState({
@@ -148,17 +150,15 @@ class MapsISS extends Component {
                         <div className="collapse mt-1" id="inSpace" data-parent="#map-card">
                             <div className="card card-body">
                                 {astronauts.message === "success" ? astronauts.people.map((people, index) =>
-                                        <p key={"people" + index}><strong>{people.name}</strong> ({people.craft})</p>)
+                                    <p key={"people" + index}><strong>{people.name}</strong> ({people.craft})</p>)
                                     :
-                                    <div className="spinner-border custom-c" role="status">
+                                    <div className="spinner-border custom-c " role="status">
                                         <span className="sr-only">Loading...</span>
                                     </div>}
                             </div>
                         </div>
                     </div>
                 </Map>
-
-
             </div>
         )
     }

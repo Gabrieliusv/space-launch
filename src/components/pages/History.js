@@ -48,71 +48,69 @@ class History extends Component {
 
 
   render() {
-  
+
     return (
       <div>
-          <form className='mt-3 p-3 d-flex justify-content-center'>
-            <div className='col-md-2 pt-5'>
-              <select className="form-control" name="year" onChange={this.onAllChange}>
-                <option value="1961">Year</option>
-                {this.state.allYears.map(year => <option key={year}>{year}</option>)}
-              </select>
-            </div>
+        <form className='form-inline mt-3 p-3 justify-content-center'>
+          <div className='col-md-2 pt-5'>
+            <select className="form-control w-100" name="year" onChange={this.onAllChange}>
+              <option value="1961">Year</option>
+              {this.state.allYears.map(year => <option key={year}>{year}</option>)}
+            </select>
+          </div>
 
-            <div className='col-md-2'>
+          <div className='col-md-2'>
             <h4>From:</h4>
-              <select className="form-control mb-2" name="fromMonth" onChange={this.onAllChange}>
-                <option value="01">Months</option>
-                <option value="01">January</option>
-                <option value="02">February</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-              <select className='form-control' name='fromDay' onChange={this.onAllChange}>
-                <option value="01">Day</option>
-                {this.state.allDays.map(day => <option key={day}>{day}</option>)}
-              </select>
-            </div>
+            <select className="form-control mb-2 w-100" name="fromMonth" onChange={this.onAllChange}>
+              <option value="01">Months</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <select className='form-control w-100' name='fromDay' onChange={this.onAllChange}>
+              <option value="01">Day</option>
+              {this.state.allDays.map(day => <option key={day}>{day}</option>)}
+            </select>
+          </div>
 
-            <div className='col-md-2'>
+          <div className='col-md-2'>
             <h4>To:</h4>
-              <select className="form-control mb-2" name="toMonth" onChange={this.onAllChange}>
-                <option value="01">Months</option>
-                <option value="01">January</option>
-                <option value="02">February</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-              <select className='form-control' name='toDay' onChange={this.onAllChange}>
-                <option value="01">Day</option>
-                {this.state.allDays.map(day => <option key={day}>{day}</option>)}
-              </select>
-            </div>
-            <button type="button" className="btn bg-custom mt-5 mb-4" onClick={this.submit}>Search</button>
-          </form>
-        
+            <select className="form-control mb-2 w-100" name="toMonth" onChange={this.onAllChange}>
+              <option value="01">Months</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <select className='form-control w-100' name='toDay' onChange={this.onAllChange}>
+              <option value="01">Day</option>
+              {this.state.allDays.map(day => <option key={day}>{day}</option>)}
+            </select>
+          </div>
+          <button type="button" className="btn bg-custom mt-5 mb-4" onClick={this.submit}>Search</button>
+        </form>
+
         <div className='pb-3'>
           <HistorySearch launches={this.state} />
-
-
         </div>
-        <Maps launches={this.state}/>
+        <Maps launches={this.state} />
       </div>
     )
   };

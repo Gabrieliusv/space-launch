@@ -17,7 +17,6 @@ class Search extends Component {
     })
   };
 
-
   submit = () =>
     fetch(`https://launchlibrary.net/1.4/agency?countryCode=${this.state.countryCode}&limit=300`)
       .then(responce => responce.json())
@@ -38,7 +37,6 @@ class Search extends Component {
 
       }))
       .catch(error => console.log('parsing error', error))
-
 
   ifEnter = (event) => {
     if (event.keyCode === 13) {
@@ -97,8 +95,8 @@ class Search extends Component {
                 <h2>Nothing Found</h2>
               </div> :
               rocketInfo === true && searchInfo.rockets.length > 0 ?
-              searchInfo.rockets.map(rocket => <div className="card m-2" key={rocket.id} style={{ width: "18rem" }}>
-              <img src={rocket.imageURL} className="card-img-top" alt={"Rocket"}></img>
+                searchInfo.rockets.map(rocket => <div className="card m-2" key={rocket.id} style={{ width: "18rem" }}>
+                  <img src={rocket.imageURL} className="card-img-top" alt={"Rocket"}></img>
                   <div className="card-body">
                     <h5 className="card-title">{rocket.name}</h5>
                     {rocket.infoURLs.length > 0 ? <a href={rocket.infoURLs[0]} target="_blank" rel="noopener noreferrer" className="card-link">Official site</a> : null}
@@ -106,13 +104,12 @@ class Search extends Component {
                   </div>
                 </div>) :
                 rocketInfo === true && searchInfo.rockets.length === 0 ?
-                <div className="min-height p-5">
-                  <h2>Nothing Found</h2>
-                </div> :
-                <div className="min-height"></div>}
+                  <div className="min-height p-5">
+                    <h2>Nothing Found</h2>
+                  </div> :
+                  <div className="min-height"></div>}
         </div>
       </div>
-
     )
   }
 }

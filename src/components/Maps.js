@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
-
+import PropTypes from 'prop-types';
 
 class Maps extends Component {
   state = {
@@ -69,6 +69,10 @@ class Maps extends Component {
       </div>
     );
   }
+}
+
+Maps.propTypes = {
+  launches: PropTypes.object.isRequired
 }
 
 export default GoogleApiWrapper({

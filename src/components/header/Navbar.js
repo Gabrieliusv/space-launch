@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
     return (
       <div>
      <nav className="nav-b sticky-top bg-white navbar navbar-expand-lg">
-  <a className="navbar-brand mr-5 ml-5 custom-c" href="/">Launched</a>
+  <NavLink to="/" className="navbar-brand mr-5 ml-5 custom-c">Launched</NavLink>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <i className="fas fa-bars custom-c"></i>
   </button>
