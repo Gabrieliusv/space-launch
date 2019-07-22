@@ -2,7 +2,7 @@
   "name": "spacelaunch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gabrieliusv.github.io/space-launch-page",
+  "homepage": "https://gabrieliusv.github.io/space-launch-data",
   "dependencies": {
     "google-maps-react": "^2.0.2",
     "leaflet": "^1.4.0",

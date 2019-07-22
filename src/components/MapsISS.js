@@ -29,24 +29,13 @@ class MapsISS extends Component {
     }
 
     componentDidMount() {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = "http://api.open-notify.org/iss-now.json";
         this.timer = setInterval(
-            () =>
-                fetch(proxyurl + url)
-                    .then(responce => responce.json())
-                    .then(IssInfo => this.setState({
-                        lat: IssInfo.iss_position.latitude,
-                        lng: IssInfo.iss_position.longitude,
-                        hasInfo: true,
-                    }))
-                    .catch(error => console.log('parsing error', error)),
+            () => this.issLocation(),
             1000
         );
 
         navigator.geolocation.watchPosition((position) => {
             this.issPass(position.coords.latitude, position.coords.longitude)
-
         }, () => {
             fetch('https://ipapi.co/json')
                 .then(res => res.json())
@@ -66,8 +55,22 @@ class MapsISS extends Component {
         this.setState({ viewport })
     }
 
-    issPass(lat, lng) {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    issLocation = () => {
+        const proxyurl = "https://iss-map-proxy.herokuapp.com/";
+        const url = "http://api.open-notify.org/iss-now.json";
+        fetch(proxyurl + url)
+            .then(responce => responce.json())
+            .then(IssInfo =>
+                this.setState({
+                    lat: IssInfo.iss_position.latitude,
+                    lng: IssInfo.iss_position.longitude,
+                    hasInfo: true,
+                }))
+            .catch(error => console.log('parsing error', error))
+    }
+
+    issPass = (lat, lng) => {
+        const proxyurl = "https://iss-map-proxy.herokuapp.com/";
         const url = `//api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lng}`
         fetch(proxyurl + url)
             .then(res => res.json())
@@ -89,7 +92,7 @@ class MapsISS extends Component {
     }
 
     inSpace = () => {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const proxyurl = "https://iss-map-proxy.herokuapp.com/";
         const url = `//api.open-notify.org/astros.json`
         fetch(proxyurl + url)
             .then(res => res.json())
@@ -142,7 +145,7 @@ class MapsISS extends Component {
                             <div className="card card-body">
                                 {issInfo.length > 0 ? issInfo.map((time, index) => <div key={"time" + index}><p>{time}</p></div>)
                                     :
-                                    <div className="spinner-border custom-c" role="status">
+                                    <div className="spinner-border custom-c align-middle" role="status">
                                         <span className="sr-only">Loading...</span>
                                     </div>}
                             </div>
