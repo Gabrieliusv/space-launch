@@ -58,3 +58,11 @@ code{
   z-index: 999;
 
 }
+
+.map-loading{
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  z-index: 999;
+
+}

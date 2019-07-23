@@ -145,8 +145,10 @@ class MapsISS extends Component {
                             <div className="card card-body">
                                 {issInfo.length > 0 ? issInfo.map((time, index) => <div key={"time" + index}><p>{time}</p></div>)
                                     :
-                                    <div className="spinner-border custom-c align-middle" role="status">
-                                        <span className="sr-only">Loading...</span>
+                                    <div className="p-5 text-center">
+                                        <div className="spinner-border custom-c" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
                                     </div>}
                             </div>
                         </div>
@@ -155,8 +157,10 @@ class MapsISS extends Component {
                                 {astronauts.message === "success" ? astronauts.people.map((people, index) =>
                                     <p key={"people" + index}><strong>{people.name}</strong> ({people.craft})</p>)
                                     :
-                                    <div className="spinner-border custom-c " role="status">
-                                        <span className="sr-only">Loading...</span>
+                                    <div className="p-5 text-center">
+                                        <div className="spinner-border custom-c" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
                                     </div>}
                             </div>
                         </div>
