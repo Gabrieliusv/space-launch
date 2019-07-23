@@ -42,7 +42,6 @@ class MapsISS extends Component {
                 .then(location => {
                     this.issPass(location.latitude, location.longitude)
                 })
-
         });
 
     }
@@ -71,7 +70,7 @@ class MapsISS extends Component {
 
     issPass = (lat, lng) => {
         const proxyurl = "https://iss-map-proxy.herokuapp.com/";
-        const url = `//api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lng}`
+        const url = `http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lng}`;
         fetch(proxyurl + url)
             .then(res => res.json())
             .then(passTimes => {
@@ -93,7 +92,7 @@ class MapsISS extends Component {
 
     inSpace = () => {
         const proxyurl = "https://iss-map-proxy.herokuapp.com/";
-        const url = `//api.open-notify.org/astros.json`
+        const url = "http://api.open-notify.org/astros.json";
         fetch(proxyurl + url)
             .then(res => res.json())
             .then(inSpace => {
