@@ -6,7 +6,7 @@ class Maps extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: {},
+    selectedPlace: {}
   };
 
   onMarkerClick = (props, marker, e) =>
@@ -16,12 +16,12 @@ class Maps extends Component {
       showingInfoWindow: true
     });
 
-  onMapClicked = (props) => {
+  onMapClicked = props => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
         activeMarker: null
-      })
+      });
     }
   };
 
@@ -30,42 +30,61 @@ class Maps extends Component {
 
     return (
       <div>
-        {hasInfo && searchInfo.launches.length > 0 ?
+        {hasInfo && searchInfo.launches.length > 0 ? (
           <div className='map-height'>
-
-            <Map google={this.props.google} zoom={3}
-              style={{ width: '100%', height: '105%', position: 'relative', margin: 'auto' }}
+            <Map
+              google={this.props.google}
+              zoom={3}
+              style={{
+                width: '100%',
+                height: '105%',
+                position: 'relative',
+                margin: 'auto'
+              }}
               initialCenter={{
                 lat: 15.326572,
                 lng: -36.157227
-              }}>
-
+              }}
+            >
               {searchInfo.launches.map(info => {
                 const { location, id } = info;
-                return location.pads[0].latitude === 0 && location.pads[0].longitude === 0 ? null :
+                return location.pads[0].latitude === 0 &&
+                  location.pads[0].longitude === 0 ? null : (
                   <Marker
                     style={{ font: '10px' }}
                     onClick={this.onMarkerClick}
                     key={id}
                     title={location.pads[0].name}
-                    name={searchInfo.launches.filter(info => info.location.pads[0].id === location.pads[0].id).map(filtered => filtered.name + " " + filtered.windowstart)}
-                    position={{ lat: location.pads[0].latitude, lng: location.pads[0].longitude }} />
-              })
-
-              }
+                    name={searchInfo.launches
+                      .filter(
+                        info => info.location.pads[0].id === location.pads[0].id
+                      )
+                      .map(
+                        filtered => filtered.name + ' ' + filtered.windowstart
+                      )}
+                    position={{
+                      lat: location.pads[0].latitude,
+                      lng: location.pads[0].longitude
+                    }}
+                  />
+                );
+              })}
 
               <InfoWindow
                 marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow}>
+                visible={this.state.showingInfoWindow}
+              >
                 <div>
-                  {this.state.selectedPlace.name === undefined ? null : this.state.selectedPlace.name.map(name => { return <h5 key={name}>{name}</h5> })}
+                  {this.state.selectedPlace.name === undefined
+                    ? null
+                    : this.state.selectedPlace.name.map(name => {
+                        return <h5 key={name}>{name}</h5>;
+                      })}
                 </div>
               </InfoWindow>
-
             </Map>
-          </div> :
-          null
-        }
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -73,8 +92,8 @@ class Maps extends Component {
 
 Maps.propTypes = {
   launches: PropTypes.object.isRequired
-}
+};
 
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyCNGu7kI4wAFGQh1Bb5HUkXDakRot6ablo")
-})(Maps)
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API
+})(Maps);
